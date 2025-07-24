@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database Service
+  db:
+    image: postgres:15 # Use a specific version of PostgreSQL
+    restart: always
+    environment:
+      POSTGRES_DB: panaderia
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: your_local_db_password # IMPORTANT: Use a strong password!
+    volumes:
+      - db_data:/var/lib/postgresql/data # Persist data even if container is removed
+    ports:
+      - "5432:5432" # Optional: Map DB port to host for direct access (e.g., via GUI tool)
+
+  # FastAPI Application Service
+  app:
+    build: . # Build from the Dockerfile in the current directory
+    ports:
+      - "8000:8000" # Map FastAPI app port to host
+    environment:
+      DB_HOST: db # This tells the FastAPI app to connect to the 'db' service
+      DB_USER: postgres
+      DB_PASS: your_local_db_password
+      DB_NAME: panaderia
+      DB_PORT: 5432
+    depends_on:
+      - db # Ensure 'db' service starts before 'app'
+
+volumes:
+  db_data: # Define the named volume for data persistence
