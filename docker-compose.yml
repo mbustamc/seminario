@@ -8,12 +8,12 @@ services:
     ports:
       - "5000:5000"
     environment:
-      FLASK_APP: app:create_app
+      FLASK_APP: app:create_app  # Referencia explícita
     depends_on:
       - db
 
   db:
-    image: docker.io/library/postgres:13
+    image: docker.io/library/postgres:13  # Nombre completo
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
