@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_APP: app:create_app
+    depends_on:
+      - db
+
+  db:
+    image: docker.io/library/postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_USER: flaskuser
+      POSTGRES_PASSWORD: flaskpass
+      POSTGRES_DB: flaskdb
+
+volumes:
+  postgres_data:

@@ -1,0 +1,4 @@
+CREATE USER flaskuser WITH PASSWORD 'flaskpass';
+CREATE DATABASE flaskdb;
+ALTER DATABASE flaskdb OWNER TO flaskuser;
+GRANT ALL PRIVILEGES ON DATABASE flaskdb TO flaskuser;

@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_DB: panaderia
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: your_local_db_password # IMPORTANT: Use a strong password!
+      POSTGRES_PASSWORD: cambiame_por_favor # IMPORTANT: Use a strong password!
     volumes:
       - db_data:/var/lib/postgresql/data # Persist data even if container is removed
     ports:
@@ -22,7 +22,7 @@ services:
     environment:
       DB_HOST: db # This tells the FastAPI app to connect to the 'db' service
       DB_USER: postgres
-      DB_PASS: your_local_db_password
+      DB_PASS: cambiame_por_favor
       DB_NAME: panaderia
       DB_PORT: 5432
     depends_on:

@@ -1,1 +1,0 @@
-gcloud run deploy panaderia --source . --set-env-vars DB_USER=panadero,DB_PASS=password,DB_NAME=panaderia
